@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "../Shared/_Header.cshtml";
+}
+
+@if(Session["admin"] == null)
+{
+    Response.Redirect("~/Home/Index");
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+</head>
+<body>
+    <div>
+
+        <h1>Admin Pnael</h1>
+        <h3> <a href="@Url.Action("AddNewProjects", "Admin")">Add Latest Project of Railway</a></h3>
+
+        <a></a>
+
+        
+    </div>
+</body>
+</html>

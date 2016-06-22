@@ -1,0 +1,81 @@
+﻿@model EAD_FINAL.LatestProject
+
+@{
+    Layout = "../Shared/_Header.cshtml";
+}
+@if (Session["admin"] == null)
+{
+    Response.Redirect("~/Home/Index");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddNewProjects</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm("AddNewProjects", "Admin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>LatestProject</legend>
+    
+
+    @if(ViewBag.added != null)
+    {
+        <div><span style="color:green">Successfully added in database.</span></div>
+    } 
+            <div class="editor-label">
+                @Html.LabelFor(model => model.trainName)
+            </div>
+            <div class="editor-field">
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.trainName)</span>
+                <span style="color:red">
+                         @Html.ValidationMessageFor(model => model.trainName)</span>
+</div>
+    
+            <div class="editor-label">
+
+                <span style="color:blue">
+                    <input type="file" name="projectPic" id="projectPic" style="margin:0 auto" />
+                </span>
+
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.category)
+            </div>
+            <div class="editor-field">
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.category)
+                    </span>
+                <span style="color:red"> @Html.ValidationMessageFor(model => model.category)</span>
+</div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.projectName)
+            </div>
+            <div class="editor-field">
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.projectName)</span>
+                <span style="color:red">@Html.ValidationMessageFor(model => model.projectName)</span>
+</div>
+    <br /><br />
+            <p>
+                <span style="color:green"><input type="submit" value="Add" /></span>
+</p>
+        </fieldset>
+    }
+    
+
+</body>
+</html>

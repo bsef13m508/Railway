@@ -1,0 +1,68 @@
+﻿@model EAD_FINAL.signin
+
+@{
+    Layout = "../Shared/_Header.cshtml";
+}
+
+@if (Session["customer"] != null)
+{
+   Response.Redirect("~/Home/Index");
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>signin</legend>
+            <br />
+            @if(ViewBag.invalid != null)
+            {
+            <div>
+                <span style="color:red">Email and Password Combination is invalid</span>
+            </div>
+            
+            }
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email)
+            </div>
+            <div class="editor-field">
+                <span style="color:blue" >@Html.EditorFor(model => model.email)</span>
+                <br /><span style="color:red">@Html.ValidationMessageFor(model => model.email)</span>
+            </div>
+    
+            <div class="editor-label">
+                <br />@Html.LabelFor(model => model.password)
+            </div>
+            <div class="editor-field">
+               <span style="color:blue">@Html.EditorFor(model => model.password)</span>
+              <br />  <span style="color:red">@Html.ValidationMessageFor(model => model.password)</span>
+            </div>
+
+            <div>
+                <br /><br /><span style="color:green"><a href="@Url.Action("ForgotPassword", "Home")">Forgot your Password?</a></span>
+            </div>
+    
+            <p>
+                <br/><br />
+               <span style="color:green"> <input type="submit" value="Login" /></span>
+            </p>
+        </fieldset>
+    }
+    
+
+</body>
+</html>

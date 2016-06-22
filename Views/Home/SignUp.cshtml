@@ -1,0 +1,159 @@
+﻿@model EAD_FINAL.Customer
+
+@{
+    Layout = "../Shared/_Header.cshtml";
+}
+
+@if (Session["customer"] != null)
+{
+    Response.Redirect("~/Home/Index");
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Railway Reservation System</title>
+</head>
+<body style="color:blue">
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    
+    @using (Html.BeginForm("SignUp","Home" , FormMethod.Post, new { enctype = "multipart/form-data"})) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <br /> <br /> <br/><br /><br />
+            <h1>Sign Up</h1>
+    
+
+               
+ 
+            <div class="editor-field">
+                @Html.LabelFor(model => model.name)
+                
+                <span style="color:blue">@Html.EditorFor(model => model.name)</span>
+
+                <span style="color:red">@Html.ValidationMessageFor(model => model.name)</span>
+</div>
+    
+            <div class="editor-label">
+                <br />
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.username)
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.username)
+                </span>
+                <span style="color:red">@Html.ValidationMessageFor(model => model.username)</span>
+</div>
+    
+            <div class="editor-label">
+                <br />
+            </div>
+
+            <div class="editor-field">
+                @Html.LabelFor(model => model.password)
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.password)
+                </span>
+                <span style="color:red">@Html.ValidationMessageFor(model => model.password)</span>
+</div>
+    
+            <div class="editor-label">
+                <br />
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.email)
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.email)
+                </span>
+                
+                <span style="color:red">
+                @if (ViewBag.emailAlreadyTaken != null)
+                {
+                    <br/>
+                    <b>Email is already Taken. Try with different Email ID.</b>
+                }
+                @Html.ValidationMessageFor(model => model.email)</span>
+</div>
+    
+            <div class="editor-label">
+                <br />
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.age)
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.age)
+                </span>
+                <span style="color:red">               @Html.ValidationMessageFor(model => model.age)</span>
+</div>
+    
+            <div class="editor-label">
+  
+                <br />
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.secretQuestion)
+                <span style="color:blue">
+                    @Html.DropDownList("SecurityQuestions", new List<SelectListItem>
+               {
+                   
+                   new SelectListItem{Text="what is the name of your first pet?",Value="1" , Selected=true},
+                   new SelectListItem{Text="what is the name of your first best friend?",Value="2" },
+                   new SelectListItem{Text="what is the name of your first love?",Value="3" }
+               },"What is the first nick name of your child hood?"
+                    )
+
+                </span>
+                <span style="color:red">@Html.ValidationMessageFor(model => model.secretQuestion)</span>
+
+</div>
+
+    
+            <div class="editor-label">
+                <br />
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.secretAnswer)
+                <span style="color:blue">
+                    @Html.EditorFor(model => model.secretAnswer)
+                </span>
+                <span style="color:red">@Html.ValidationMessageFor(model => model.secretAnswer)</span>
+</div>
+    
+            <div class="editor-label">
+
+                <br />
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.path)
+                <span style="color:blue">
+                    <input type="file" name="profile_pic" id="prfile_pic" style="margin:0 auto"/></span>
+
+                <span style="color:red">@Html.ValidationMessageFor(model => model.path)</span>
+</div>
+    <br/>
+            @if (ViewBag.Message != null)
+            {
+                <div style="border:solid  1px green">
+                    @ViewBag.Message
+
+                </div>
+            }
+            <p style="color:green">
+                <input type="submit" value="Register" />
+            </p>
+        </fieldset>
+    }
+
+
+
+    
+  
+</body>
+</html>

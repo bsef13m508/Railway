@@ -1,0 +1,346 @@
+﻿
+
+
+@model List<EAD_FINAL.LatestProject>
+
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Online Railway Reservation</title>
+    <!-- Bootstrap Core CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+
+    <!-- For Search Box-->
+    <!-- JAVASCRIPT to clear search text when the field is clicked -->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#tfq2b').keyup(function () {
+
+                $que = $('#tfq2b').val();
+                $path = "/Home/GetResults" + "?query=" + $que;
+                $('#res').html("");
+                $('#res').hide();
+                $.getJSON($path, function (data)
+                {
+                    
+                    if (data != null) {
+                        $('#res').show();
+                        $('#res').html(data);
+
+                        
+                    }
+
+                });
+                
+
+            });
+        });
+
+
+
+
+
+
+
+    </script>
+    <!-- CSS styles for standard search box with placeholder text-->
+    <style type="text/css">
+        #tfheader {
+            background-color: black;
+        }
+
+        #tfnewsearch {
+            float: right;
+            padding: 20px;
+        }
+
+        .tftextinput2 {
+            margin: 0;
+            padding: 5px 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #666;
+            border: 1px solid #0076a3;
+            border-right: 0px;
+            border-top-left-radius: 5px 5px;
+            border-bottom-left-radius: 5px 5px;
+        }
+
+        .tfbutton2 {
+            margin: 0;
+            padding: 5px 7px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            border: solid 1px #0076a3;
+            border-right: 0px;
+            background: #0095cd;
+            background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+            background: -moz-linear-gradient(top, #00adee, #0078a5);
+            border-top-right-radius: 5px 5px;
+            border-bottom-right-radius: 5px 5px;
+        }
+
+            .tfbutton2:hover {
+                text-decoration: none;
+                background: #007ead;
+                background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+                background: -moz-linear-gradient(top, #0095cc, #00678e);
+            }
+            /* Fixes submit button height problem in Firefox */
+            .tfbutton2::-moz-focus-inner {
+                border: 0;
+            }
+
+        .tfclear {
+            clear: both;
+        }
+    </style>
+
+
+
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css">
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome/css/font-awesome.min.css")" type="text/css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome/css/font-awesome.css")" type="text/css">
+    <!-- Plugin CSS -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/creative.css")" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Railway Online</a>
+
+            </div>
+ 
+                <form id="tfnewsearch" method="get" action="#">
+                    <input type="text" id="tfq2b" class="tftextinput2" name="q"  maxlength="120" placeholder="Search By City..."><input type="submit" value="Go" class="tfbutton2">
+                    <a><div id="res" style="color:red"></div></a>
+                </form>
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+
+                    <li>
+                        @if (Session["customer"] != null)
+                        {
+                            var user = Session["customer"] as string;
+                            
+                            <a class="page-scroll" href="@Url.Action("Logout", "Home")">Logout(@user)</a>
+                        }
+                        else
+                        {
+                            <a class="page-scroll" href="@Url.Action("Login","Home")">Login</a>
+                        }
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Latest</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>Make Reservation of your train Tickets Online</h1>
+                <hr>
+                <p>Reserver your Railway Tickets Online sitting at your Home just in few Clicks!</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+            </div>
+        </div>
+    </header>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">We are Pleased to come up with most needed facility in Pakistan!</h2>
+                    <hr class="light">
+                    <p class="text-faded">The classical way of reserving railway tickets was to go physically on a station and make reservation for their tickets, which was quite time consuming and boring task. Internet has revolutionized the life of a common people So there was Strong need to make the reservation task onlin. We are glad to be the first organization which come up with the most wanted need of Pakistani Peope. Now you can reserve your railway ticket online sitting in your Home</p>
+
+
+
+
+                    <!-- Sign up-->
+
+
+
+                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">We Proudly Presents Latest Services</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
+                        <h3>Online Ticket Reservation</h3>
+                        <p class="text-muted">You can reserve your tickets online with ease now.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Online Payment</h3>
+                        <p class="text-muted">You can now pay the fare of your tickets using paypal and other trusted services.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>Up to Date</h3>
+                        <p class="text-muted">You can stay up to date about the latest news in Railway department.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Travel to a new Word</h3>
+                        <p class="text-muted">We are comming up with latest services just stay tunned with our site.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                @{
+                    Model.Reverse();
+                    int i=0;
+                 foreach(var s in Model)
+                 { 
+                     if(i < 6)
+                     { 
+                        <div class="col-lg-4 col-sm-6">
+                            <a href="#" class="portfolio-box">
+                                <img src="@Url.Content("~/Content/img/portfolio/"+s.imageName+"")" class="img-responsive" alt="">
+                                <div class="portfolio-box-caption">
+                                    <div class="portfolio-box-caption-content">
+                                        <div class="project-category text-faded">
+                                            @s.category
+                                        </div>
+                                        <div class="project-name">
+                                            @s.projectName
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                         
+                    }
+                    i++;
+                }
+                }
+              </div>
+        </div>
+    </section>
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Online Ticket Reservation app is available for download.</h2>
+                <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
+            </div>
+        </div>
+    </aside>
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Get In Touch!</h2>
+                    <hr class="primary">
+                    <p>Bless us with your kind reviews and suggestion by calling us or email us at the provided email ID! We are here to serve you well</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                    <p>0308-6286354</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                    <p><a href="#">bilalahmad4554@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- jQuery -->
+    <script src="@Url.Content("~/Content/js/jquery.js")"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
+    <!-- Plugin JavaScript -->
+    <script src="@Url.Content("~/Content/js/jquery.easing.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/jquery.fittext.js")"></script>
+    <script src="@Url.Content("~/Content/js/wow.min.js")"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="@Url.Content("~/Content/js/creative.js")"></script>
+</body>
+</html>
